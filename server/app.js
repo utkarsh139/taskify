@@ -21,6 +21,13 @@ app.use(express.json());
 app.use("/api/v1", usersApi);
 app.use("/api/v1", tasksApi);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server Started : ${process.env.PORT}`);
+// Root route 
+app.get("/", (req, res) => {
+  res.json({ message: "Taskify API is running!" });
+});
+
+//PORT fallback
+const PORT = process.env.PORT || 1000;
+app.listen(PORT, () => {
+  console.log(`Server Started : ${PORT}`);
 });
